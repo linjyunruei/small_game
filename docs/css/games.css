@@ -1,0 +1,294 @@
+/* ==========================================================================
+   Games Specific CSS Styles
+   ========================================================================== */
+
+/* ======================== 2048 ======================== */
+.g2048-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.g2048-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(4, 80px);
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.g2048-cell {
+  border-radius: 12px;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1.6rem; font-weight: 900;
+  font-family: 'Outfit', sans-serif;
+  transition: transform 0.12s ease;
+}
+.g2048-hint { color: var(--text-muted); font-size: 0.85rem; text-align: center; }
+
+/* ======================== Minesweeper ======================== */
+.ms-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.ms-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 36px);
+  grid-template-rows: repeat(9, 36px);
+  gap: 3px;
+}
+.ms-cell {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 0.95rem; font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+}
+.ms-cell:hover { background: rgba(255,255,255,0.15); }
+.ms-revealed { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.05); cursor: default; }
+.ms-revealed:hover { background: rgba(0,0,0,0.4); }
+.ms-mine { background: rgba(255,0,85,0.4) !important; }
+.ms-flagged { background: rgba(255,190,12,0.2); border-color: rgba(255,190,12,0.4); }
+.ms-hint { color: var(--text-muted); font-size: 0.85rem; }
+
+/* ======================== Hangman ======================== */
+.hangman-wrapper { display: flex; flex-direction: column; align-items: center; gap: 16px; min-width: 320px; }
+.hangman-drawing { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 12px; }
+.hangman-word {
+  font-size: 2rem; letter-spacing: 10px; font-weight: 900;
+  color: var(--accent-cyan); font-family: 'Press Start 2P', monospace;
+}
+.hangman-keyboard {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 6px; max-width: 340px;
+}
+.hk-btn {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text-main); font-weight: 700; font-size: 0.9rem;
+  cursor: pointer; transition: all 0.15s;
+}
+.hk-btn:hover:not([disabled]) { background: var(--accent-cyan); color: #000; }
+.hk-btn.correct { background: var(--accent-green); color: #000; border-color: var(--accent-green); }
+.hk-btn.wrong { background: var(--accent-pink); color: #fff; border-color: var(--accent-pink); }
+.hk-btn[disabled] { opacity: 0.5; cursor: default; }
+.hangman-cat { color: var(--text-muted); font-size: 0.9rem; }
+
+/* Canvas Elements */
+canvas {
+  border-radius: 12px;
+  background: #0d111e;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 243, 255, 0.1);
+  display: block;
+}
+
+/* Tetris Layout */
+.tetris-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.tetris-side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.preview-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+}
+
+.preview-box h4 {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.preview-box canvas {
+  margin: 0 auto;
+}
+
+/* Tic-Tac-Toe Styles */
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.ttt-cell {
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid var(--border-glass);
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 900;
+  transition: all 0.2s ease;
+}
+
+.ttt-cell:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-cyan);
+}
+
+.ttt-cell.win-cell {
+  background: rgba(0, 243, 255, 0.2);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px var(--accent-cyan);
+  animation: pulseWin 1s infinite alternate;
+}
+
+@keyframes pulseWin {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.ttt-x {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 12px var(--accent-cyan);
+}
+
+.ttt-o {
+  color: var(--accent-pink);
+  text-shadow: 0 0 12px var(--accent-pink);
+}
+
+/* Sudoku Styles */
+.sudoku-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 38px);
+  grid-template-rows: repeat(9, 38px);
+  gap: 1px;
+  background: #2a3352;
+  border: 3px solid var(--accent-cyan);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+  overflow: hidden;
+}
+
+.sudoku-cell {
+  background: #111628;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--text-main);
+  position: relative;
+  transition: background 0.15s ease;
+}
+
+/* 3x3 Block Thick Borders */
+.sudoku-cell:nth-child(3n) {
+  border-right: 2px solid var(--accent-cyan);
+}
+.sudoku-cell:nth-child(9n) {
+  border-right: none;
+}
+.sudoku-cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 2px solid var(--accent-cyan);
+}
+
+.sudoku-cell.initial {
+  color: var(--accent-gold);
+  font-weight: 900;
+}
+
+.sudoku-cell.selected {
+  background: rgba(0, 243, 255, 0.35) !important;
+}
+
+.sudoku-cell.same-num {
+  background: rgba(0, 243, 255, 0.18);
+}
+
+.sudoku-cell.related {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sudoku-cell.error {
+  background: rgba(255, 0, 85, 0.35) !important;
+  color: #ff4d88;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+}
+
+.notes-grid span {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 11px;
+}
+
+.sudoku-controls {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.sudoku-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.sudoku-btn.active {
+  background: var(--accent-cyan);
+  color: #000;
+  box-shadow: 0 0 12px var(--accent-cyan);
+}
+
+.sudoku-numpad {
+  display: grid;
+  grid-template-columns: repeat(9, 38px);
+  gap: 6px;
+}
+
+.numpad-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  height: 42px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.numpad-btn:hover {
+  background: var(--accent-cyan);
+  color: #000;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
